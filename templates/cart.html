@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}Shopping Cart - E-Commerce Store{% endblock %}
+
+{% block content %}
+
+<h1>Shopping Cart</h1>
+
+{% if cart_items %}
+
+    <div class="cart-container">
+
+        {% for item in cart_items %}
+
+            <div class="cart-item">
+
+                {% if item.product.image %}
+                    <img src="{{ item.product.image.url }}"
+                         alt="{{ item.product.name }}">
+                {% endif %}
+
+                <div class="cart-item-info">
+
+                    <h3>{{ item.product.name }}</h3>
+
+                    <p>Price: ₹{{ item.product.price }}</p>
+
+                    <div class="quantity-controls">
+
+                      <a href="{% url 'update_cart' item.product.id 'decrease' %}">
+        −
+                      </a>
+
+                    <span>{{ item.quantity }}</span>
+
+                    <a href="{% url 'update_cart' item.product.id 'increase' %}">
+        +
+                    </a>
+
+                    </div>
+
+                    <p>Subtotal: ₹{{ item.subtotal }}</p>
+                    <a href="{% url 'remove_from_cart' item.product.id %}" class="remove-btn">
+    Remove
+</a>
+
+                </div>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+    <div class="cart-total">
+
+        <h2>Total: ₹{{ total }}</h2>
+
+    <a href="{% url 'checkout' %}" class="cart-btn">
+    Proceed to Checkout
+    </a>  
+
+    </div>
+
+{% else %}
+
+    <p>Your cart is empty.</p>
+
+{% endif %}
+
+{% endblock %}

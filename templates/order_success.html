@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Order Successful - E-Commerce Store{% endblock %}
+
+{% block content %}
+
+<div class="order-success">
+
+    <h1>🎉 Order Placed Successfully!</h1>
+
+    <p>Thank you for your purchase.</p>
+
+    <h2>Order #{{ order.id }}</h2>
+
+    <p>
+        <strong>Total Amount:</strong>
+        ₹{{ order.total_amount }}
+    </p>
+
+    <p>
+        <strong>Status:</strong>
+        {{ order.status }}
+    </p>
+
+    <p>
+        <strong>Order Date:</strong>
+        {{ order.created_at }}
+    </p>
+
+    <br>
+
+    <a href="{% url 'products' %}" class="cart-btn">
+        Continue Shopping
+    </a>
+
+</div>
+
+{% endblock %}

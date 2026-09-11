@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}My Profile - E-Commerce Store{% endblock %}
+
+{% block content %}
+
+<div class="profile-container">
+
+    <h1>My Profile</h1>
+
+    <div class="profile-card">
+
+        <h2>Account Information</h2>
+
+        <p>
+            <strong>Username:</strong>
+            {{ user.username }}
+        </p>
+
+        <p>
+            <strong>Email:</strong>
+            {{ user.email }}
+        </p>
+
+        <p>
+            <strong>First Name:</strong>
+            {{ user.first_name|default:"Not provided" }}
+        </p>
+
+        <p>
+            <strong>Last Name:</strong>
+            {{ user.last_name|default:"Not provided" }}
+        </p>
+
+        <a href="{% url 'orders' %}" class="details-btn">
+            My Orders
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

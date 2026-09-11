@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}E-Commerce Store{% endblock %}</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/script.js' %}"></script>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <header>
+        <nav>
+            <div class="logo">
+                E-Commerce Store
+            </div>
+
+           <ul>
+    <li><a href="{% url 'home' %}">Home</a></li>
+
+    <li><a href="{% url 'products' %}">Products</a></li>
+
+    <li><a href="{% url 'cart' %}">Cart ({{ request.session.cart|length|default:0 }})</a></li>
+
+    {% if user.is_authenticated %}
+
+        <li>
+            <a href="{% url 'orders' %}">My Orders</a>
+        </li>
+        <li>
+        <a href="{% url 'profile' %}">Profile</a>
+        </li>
+        <li><span style="color: white !important;">Hi, {{ user.username }}</span></li>
+        <li>
+        <a href="{% url 'logout' %}">Logout</a>
+        </li>
+
+    {% else %}
+
+            <li>
+            <a href="{% url 'login' %}">Login</a>
+            </li>
+
+            <li>
+            <a href="{% url 'register' %}">Register</a>
+            </li>
+
+            {% endif %}
+        </ul>
+        </nav>
+    </header>
+
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 E-Commerce Store. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

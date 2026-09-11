@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}My Orders - E-Commerce Store{% endblock %}
+
+{% block content %}
+
+<h1>My Orders</h1>
+
+<div class="orders-container">
+
+    {% for order in orders %}
+
+        <div class="order-card">
+
+            <h3>Order #{{ order.id }}</h3>
+
+            <p>
+                <strong>Date:</strong>
+                {{ order.created_at }}
+            </p>
+
+            <p>
+                <strong>Total:</strong>
+                ₹{{ order.total_amount }}
+            </p>
+
+            <p>
+                <strong>Status:</strong>
+                {{ order.status }}
+            </p>
+
+            <a href="{% url 'order_detail' order.id %}" class="details-btn">
+                 View Details
+            </a>
+
+        </div>
+
+    {% empty %}
+
+        <p>You have not placed any orders yet.</p>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

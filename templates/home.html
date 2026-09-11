@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - E-Commerce Store{% endblock %}
+
+{% block content %}
+
+<h1>Welcome to Our E-Commerce Store</h1>
+
+<h2>Featured Products</h2>
+
+{% for product in products %}
+    <div>
+        <h3>{{ product.name }}</h3>
+        <p>₹{{ product.price }}</p>
+        <p>{{ product.category.name }}</p>
+    </div>
+{% empty %}
+    <p>No products available.</p>
+{% endfor %}
+
+{% endblock %}

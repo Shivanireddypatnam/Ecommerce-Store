@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block title %}Checkout - E-Commerce Store{% endblock %}
+
+{% block content %}
+
+<h1>Checkout</h1>
+
+<div class="checkout-container">
+
+    <!-- Customer Information -->
+    <div class="checkout-form">
+
+        <h2>Customer Information</h2>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <label>Full Name</label>
+            <input type="text" name="customer_name" required>
+
+            <label>Email</label>
+            <input type="email" name="email" required>
+
+            <label>Phone</label>
+            <input type="text" name="phone" required>
+
+            <label>Address</label>
+            <textarea name="address" required></textarea>
+
+            <label>City</label>
+            <input type="text" name="city" required>
+
+            <label>State</label>
+            <input type="text" name="state" required>
+
+            <label>Pincode</label>
+            <input type="text" name="pincode" required>
+
+            <button type="submit" class="cart-btn">
+                Place Order
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- Order Summary -->
+    <div class="checkout-summary">
+
+        <h2>Order Summary</h2>
+
+        {% for item in cart_items %}
+
+            <div class="summary-item">
+
+                <p>
+                    <strong>{{ item.product.name }}</strong>
+                </p>
+
+                <p>
+                    {{ item.quantity }} × ₹{{ item.product.price }}
+                </p>
+
+                <p>
+                    Subtotal: ₹{{ item.subtotal }}
+                </p>
+
+            </div>
+
+        {% endfor %}
+
+        <hr>
+
+        <h2>Total: ₹{{ total }}</h2>
+
+    </div>
+
+</div>
+
+{% endblock %}
