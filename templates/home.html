@@ -8,14 +8,31 @@
 
 <h2>Featured Products</h2>
 
-{% for product in products %}
-    <div>
-        <h3>{{ product.name }}</h3>
-        <p>₹{{ product.price }}</p>
-        <p>{{ product.category.name }}</p>
-    </div>
-{% empty %}
-    <p>No products available.</p>
-{% endfor %}
+<div class="products-container">
+
+    {% for product in products %}
+
+        <div class="product-card">
+
+            {% if product.image %}
+                <img src="{{ product.image.url }}"
+                     alt="{{ product.name }}">
+            {% endif %}
+
+            <h3>{{ product.name }}</h3>
+
+            <p>₹{{ product.price }}</p>
+
+            <p>Category: {{ product.category.name }}</p>
+
+        </div>
+
+    {% empty %}
+
+        <p>No products available.</p>
+
+    {% endfor %}
+
+</div>
 
 {% endblock %}
